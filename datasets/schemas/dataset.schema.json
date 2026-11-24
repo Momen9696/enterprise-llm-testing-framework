@@ -1,0 +1,238 @@
+{
+  "$defs": {
+    "EvalCase": {
+      "additionalProperties": false,
+      "description": "One evaluation item and the criteria used to score the provider response.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string"
+        },
+        "prompt": {
+          "default": "",
+          "title": "Prompt",
+          "type": "string"
+        },
+        "system_prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "System Prompt"
+        },
+        "context": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Context",
+          "type": "array"
+        },
+        "template": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PromptTemplateSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "expected": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected"
+        },
+        "match_mode": {
+          "default": "exact",
+          "enum": [
+            "exact",
+            "contains"
+          ],
+          "title": "Match Mode",
+          "type": "string"
+        },
+        "json_schema": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Json Schema"
+        },
+        "secrets": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Secrets",
+          "type": "array"
+        },
+        "instruction_canaries": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Instruction Canaries",
+          "type": "array"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "expect_abstention": {
+          "default": false,
+          "title": "Expect Abstention",
+          "type": "boolean"
+        },
+        "consistency_samples": {
+          "default": 1,
+          "title": "Consistency Samples",
+          "type": "integer"
+        },
+        "max_latency_ms": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Latency Ms"
+        },
+        "max_completion_tokens": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Completion Tokens"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "reference_outcome": {
+          "default": "either",
+          "enum": [
+            "pass",
+            "fail",
+            "error",
+            "either"
+          ],
+          "title": "Reference Outcome",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "category"
+      ],
+      "title": "EvalCase",
+      "type": "object"
+    },
+    "PromptTemplateSpec": {
+      "additionalProperties": false,
+      "description": "A named prompt template rendered before the provider is called.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "template": {
+          "title": "Template",
+          "type": "string"
+        },
+        "input_variables": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Input Variables",
+          "type": "array"
+        },
+        "variables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Variables",
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "template",
+        "input_variables",
+        "variables"
+      ],
+      "title": "PromptTemplateSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A versioned batch of evaluation cases.",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/EvalCase"
+      },
+      "title": "Cases",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "description",
+    "cases"
+  ],
+  "title": "EvaluationDataset",
+  "type": "object"
+}

@@ -1,0 +1,31 @@
+{
+  "baseline_run_id": "enterprise-eval-sample",
+  "current_run_id": "enterprise-eval-mutated",
+  "max_drop": 0.0,
+  "regression_count": 2,
+  "regressions": [
+    {
+      "case_id": "qa-capital-france",
+      "metric": "exact_match",
+      "baseline_score": 1.0,
+      "current_score": 0.0,
+      "drop": 1.0,
+      "baseline_status": "passed",
+      "current_status": "failed",
+      "regressed": true,
+      "explanation": "exact_match on qa-capital-france dropped by 1.0000, which is above the allowed drop of 0.0000."
+    },
+    {
+      "case_id": "qa-capital-france",
+      "metric": "semantic_similarity",
+      "baseline_score": 1.0,
+      "current_score": 0.0,
+      "drop": 1.0,
+      "baseline_status": "passed",
+      "current_status": "failed",
+      "regressed": true,
+      "explanation": "semantic_similarity on qa-capital-france dropped by 1.0000, which is above the allowed drop of 0.0000."
+    }
+  ],
+  "disclaimer": "Scores are evaluation indicators produced by deterministic checks and lexical heuristics. They are not absolute guarantees of correctness, faithfulness, safety, or the absence of hallucinations. Heuristic hallucination indicators can miss subtle unsupported claims and can flag acceptable paraphrases. A passing safety check only means the configured patterns did not match."
+}

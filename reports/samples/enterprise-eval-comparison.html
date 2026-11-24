@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Evaluation comparison</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem; color: #1c1c1c; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #c8c8c8; padding: 0.4rem 0.6rem; text-align: left; }
+    th { background: #f3f1ea; }
+    .disclaimer { background: #fff6d8; border: 1px solid #e2c56a; padding: 0.8rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Evaluation run comparison</h1>
+  <p class="disclaimer">Scores are evaluation indicators produced by deterministic checks and lexical heuristics. They are not absolute guarantees of correctness, faithfulness, safety, or the absence of hallucinations. Heuristic hallucination indicators can miss subtle unsupported claims and can flag acceptable paraphrases. A passing safety check only means the configured patterns did not match.</p>
+  <p>Baseline enterprise-eval-sample compared with
+  enterprise-eval-mutated. Allowed score drop: 0.0.
+  Regressions: 2.</p>
+  <table>
+    <thead><tr><th>Case</th><th>Metric</th><th>Baseline</th><th>Current</th><th>Drop</th><th>Regressed</th><th>Explanation</th></tr></thead>
+    <tbody><tr><td>qa-capital-france</td><td>exact_match</td><td>1.0000</td><td>0.0000</td><td>1.0000</td><td>yes</td><td>exact_match on qa-capital-france dropped by 1.0000, which is above the allowed drop of 0.0000.</td></tr>
+<tr><td>qa-capital-france</td><td>semantic_similarity</td><td>1.0000</td><td>0.0000</td><td>1.0000</td><td>yes</td><td>semantic_similarity on qa-capital-france dropped by 1.0000, which is above the allowed drop of 0.0000.</td></tr></tbody>
+  </table>
+</body>
+</html>
